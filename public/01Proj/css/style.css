@@ -23,7 +23,8 @@ nav a:hover {
     transition: .9s;
 }
 
-#welcomeText, #welcomeText2 {
+#welcomeText,
+#welcomeText2 {
     float: left;
     text-indent: 200px;
 }
@@ -90,6 +91,7 @@ ul {
 
 #protoOverview,
 #keyIdea,
+#keyIdea2,
 #bufferKeyIdea,
 #bufferKeyIdea2,
 #bufferOverview,
