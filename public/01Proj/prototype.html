@@ -6,79 +6,79 @@
     <meta charset="utf-8" />
     <title>Design Pattern: Prototype </title>
     <style>
-    #home {
-        font-weight: bolder;
-    }
-</style>
+        #home {
+            font-weight: bolder;
+        }
+    </style>
 </head>
 
 
 
 
-    <body style="background-color:black; color:white">
-        <header>
-            <h1>Prototype</h1>
-        </header>
-        <nav>
-            <hr width="50%" />
-            <a href="index.html">Overview</a>
-            <a href="prototype.html">Prototype</a>
-            <!---->
-            <a href="doublebuffer.html">Double Buffer</a>
-            <!--http://gameprogrammingpatterns.com/double-buffer.html-->
-            <a href="gameloop.html">Game Loop</a>
-            <!--http://gameprogrammingpatterns.com/game-loop.html-->
-            <a href="biblio.html">Links Used</a>
-        </nav>
+<body style="background-color:black; color:white">
+    <header>
+        <h1>Prototype</h1>
+    </header>
+    <nav>
+        <hr width="50%" />
+        <a href="index.html">Overview</a>
+        <a href="prototype.html">Prototype</a>
+        <!---->
+        <a href="doublebuffer.html">Double Buffer</a>
+        <!--http://gameprogrammingpatterns.com/double-buffer.html-->
+        <a href="gameloop.html">Game Loop</a>
+        <!--http://gameprogrammingpatterns.com/game-loop.html-->
+        <a href="biblio.html">Links Used</a>
+    </nav>
 
-        <br /> <br />
+    <br /> <br />
 
-        <main>
-
-
-            <div id="protoOverview">
-                <h2>The Prototype Design Pattern</h2>
-                <p>In a video game that has hordes of monsters that randomly appear around the map, there can be creatures and fiends swarming around the hero. These monsters enter the arena by way of “spawners”, and there is a different spawner for each
-                    kind of enemy.</p>
-                <p>For the sake of this example, let’s say we have different classes for each kind of monster in the game: Ghost, Demon, Sorcerer, etc., like:</p>
-                <img src="img/03class.JPG" />
-                <p>The task to implement such an example becomes tedious, and the mere thought is as arduous as fighting these monsters in game. Rather than brute force your way into making each individual class, we can take advantage of the <strong> Prototype Design Pattern</strong>.</p>
-                
-            </div>
-            
-            <br /><br />
-            
-            <div id="keyIdea">
-                <h2>The Key Idea</h2>
-                <p>Design Patterns are tried and true methods of making our lives easier as Software Engineers. Since there is a pattern among making monsters (Ghosts, Demons, and Sorcerers are all <em> Monsters </em> )and making spawners for each monster
-                    (Ghost Spawner, Demon Spawner, and Sorcerer Spawner are all <em>Spawners</em>, then <strong>the Prototype Pattern demands that we make something that repeats this pattern for us.</strong></p>
-            </div>
-            
-            <br /><br />
-            
-            <div id="keyIdea">
-                <h2>Implementation</h2>
-                <p>To implement this, we give our base class, Monster, an abstract <em> <strong>clone() method: </em> </strong>
-                </p>
-                <img src="img/04clonemethod.JPG" />
-                <p>Every class that derives from the base class would then proceed to create an implementation returns a new object identical in class and state to itself.</p>
-                <img src="img/05monsterclone.JPG" />
-                <p>Once all our monsters support that, we no longer need a spawner class for each monster class. Instead, we define a single one:</p>
-                <img src="img/06spawner.JPG" />
-            </div>
-        </main>
-
-       <br /><br />
-
-        <footer>
-            <hr> CST 336 Internet Programming. 2019&copy. Pimentel <br />
-
-            <br />
-            <img src="img/csumb.png" alt="CSU Monterey Bay Logo" width="149" height="86px">
-        </footer>
+    <main>
 
 
+        <div id="protoOverview">
+            <h2>The Prototype Design Pattern</h2>
+            <p>In a video game that has hordes of monsters that randomly appear around the map, there can be creatures and fiends swarming around the hero. These monsters enter the arena by way of “spawners”, and there is a different spawner for each kind
+                of enemy.</p>
+            <p>For the sake of this example, let’s say we have different classes for each kind of monster in the game: Ghost, Demon, Sorcerer, etc., like:</p>
+            <img src="img/03class.JPG" alt="03class"/>
+            <p>The task to implement such an example becomes tedious, and the mere thought is as arduous as fighting these monsters in game. Rather than brute force your way into making each individual class, we can take advantage of the <strong> Prototype Design Pattern</strong>.</p>
 
-    </body>
+        </div>
+
+        <br /><br />
+
+        <div id="keyIdea">
+            <h2>The Key Idea</h2>
+            <p>Design Patterns are tried and true methods of making our lives easier as Software Engineers. Since there is a pattern among making monsters (Ghosts, Demons, and Sorcerers are all <em> Monsters </em> )and making spawners for each monster (Ghost
+                Spawner, Demon Spawner, and Sorcerer Spawner are all <em>Spawners</em>, then <strong>the Prototype Pattern demands that we make something that repeats this pattern for us.</strong></p>
+        </div>
+
+        <br /><br />
+
+        <div id="keyIdea">
+            <h2>Implementation</h2>
+            <p>To implement this, we give our base class, Monster, an abstract <em> <strong>clone() method: </em> </strong>
+            </p>
+            <img src="img/04clonemethod.JPG" alt="04clonemethod" />
+            <p>Every class that derives from the base class would then proceed to create an implementation returns a new object identical in class and state to itself.</p>
+            <img src="img/05monsterclone.JPG" alt="05monsterclone" />
+            <p>Once all our monsters support that, we no longer need a spawner class for each monster class. Instead, we define a single one:</p>
+            <img src="img/06spawner.JPG" alt="06spawner" />
+        </div>
+    </main>
+
+    <br /><br />
+
+    <footer>
+        <hr> CST 336 Internet Programming. 2019&copy. Pimentel <br />
+
+        <br />
+        <img src="img/csumb.png" alt="CSU Monterey Bay Logo" width="149" height="86px">
+    </footer>
+
+
+
+</body>
 
 </html>

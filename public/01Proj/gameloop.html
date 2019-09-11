@@ -6,87 +6,79 @@
     <meta charset="utf-8" />
     <title>Design Pattern: Double Buffer </title>
     <style>
-    #home {
-        font-weight: bolder;
-    }
-</style>
+        #home {
+            font-weight: bolder;
+        }
+    </style>
 </head>
 
 
 
 
-    <body style="background-color:black; color:white">
-        <header>
-            <h1>Game Loop</h1>
-        </header>
-        <nav>
-            <hr width="50%" />
-            <a href="index.html">Overview</a>
-            <a href="prototype.html">Prototype</a>
-            <!---->
-            <a href="doublebuffer.html">Double Buffer</a>
-            <!--http://gameprogrammingpatterns.com/double-buffer.html-->
-            <a href="gameloop.html">Game Loop</a>
-            <!--http://gameprogrammingpatterns.com/game-loop.html-->
-            <a href="biblio.html">Links Used</a>
-        </nav>
+<body style="background-color:black; color:white">
+    <header>
+        <h1>Game Loop</h1>
+    </header>
+    <nav>
+        <hr width="50%" />
+        <a href="index.html">Overview</a>
+        <a href="prototype.html">Prototype</a>
+        <!---->
+        <a href="doublebuffer.html">Double Buffer</a>
+        <!--http://gameprogrammingpatterns.com/double-buffer.html-->
+        <a href="gameloop.html">Game Loop</a>
+        <!--http://gameprogrammingpatterns.com/game-loop.html-->
+        <a href="biblio.html">Links Used</a>
+    </nav>
 
-        <br /> <br />
+    <br /> <br />
 
-        <main>
+    <main>
 
 
-            <div id="loopOverview">
-                <h2>The Problem</h2>
-                <p>Computers typically operate in sequential way by breaking large tasks into smaller ones. 
-                In this way, computers will perform one task at a time, one after another. 
-                Modern computers are so fast that the human eye cannot perceive each step, namely in image processing. </p> 
-                <p>However, in the world of video games, the computer must render graphics in real time, and update each image every frame.
-                Since computers perform one task at a time, running video games in this way runs into a problem. 
-                Graphics are constantly being rendered while the game runs.
-                The intention of this design pattern is to display every pixel at the same time, instead of one pixel at a time.</p>
-            </div>
-            
+        <div id="loopOverview">
+            <h2>The Problem</h2>
+            <p>Computers typically operate in sequential way by breaking large tasks into smaller ones. In this way, computers will perform one task at a time, one after another. Modern computers are so fast that the human eye cannot perceive each step,
+                namely in image processing. </p>
+            <p>However, in the world of video games, the computer must render graphics in real time, and update each image every frame. Since computers perform one task at a time, running video games in this way runs into a problem. Graphics are constantly
+                being rendered while the game runs. The intention of this design pattern is to display every pixel at the same time, instead of one pixel at a time.</p>
+        </div>
+
+        <br /><br />
+
+        <div id="loopKeyIdea">
+            <h2>The Pattern</h2>
+            <p>A game loop runs continuously during gameplay. Each turn of the loop, it processes user input without blocking, updates the game state, and renders the game. It tracks the passage of time to control the rate of gameplay.</p>
+
+            <p>The intention behind design patterns is not to use as many as you can. However, the Game Loop pattern can be found in almost every video game imaginable. Even if the game is not always waiting for the player for input, sound and animations
+                are almost always act true to this pattern.</p>
+
+        </div>
+
+        <br /><br />
+
+        <div id="loopKeyIdea2">
+            <h2>The Simplest Game Loop</h2>
+            <p>Here is one of the simplest examples of a game loop: </p>
+            <img src="img/09simpleloop.JPG" />
+            <p>The problem with this example is it would be too fast for a faster computer and too slow for older, slower, hardware. To solve this problem and keep frames per second in mind, use this: </p>
+            <img src="img/10frames.JPG" alt="10frames"/>
             <br /><br />
-            
-            <div id="loopKeyIdea">
-                <h2>The Pattern</h2>
-                <p>A game loop runs continuously during gameplay. 
-                Each turn of the loop, it processes user input without blocking, updates the game state, and renders the game. 
-                It tracks the passage of time to control the rate of gameplay.</p>
-                
-                <p>The intention behind design patterns is not to use as many as you can. 
-                However, the Game Loop pattern can be found in almost every video game imaginable.
-                Even if the game is not always waiting for the player for input, sound and animations are almost always act true to this pattern.</p>
-        
-            </div>
-            
-            <br /><br />
-            
-            <div id="loopKeyIdea2">
-                <h2>The Simplest Game Loop</h2>
-                <p>Here is one of the simplest examples of a game loop: </p>
-                <img src="img/09simpleloop.JPG" />
-                <p>The problem with this example is it would be too fast for a faster computer
-                and too slow for older, slower, hardware.
-                To solve this problem and keep frames per second in mind, use this: </p>
-                <img src="img/10frames.JPG" />
-                <br /><br />
             </ul>
-            </div>
-        </main>
+        </div>
+    </main>
 
-       <br /><br />
+    <br /><br />
 
-        <footer>
-            <hr> CST 336 Internet Programming. 2019&copy. Pimentel <br />
+    <footer>
+        <hr> CST 336 Internet Programming. 2019&copy. Pimentel <br />
 
-            <br />
-            <img src="img/csumb.png" alt="CSU Monterey Bay Logo" width="149" height="86px">
-        </footer>
+        <br />
+        <img src="img/csumb.png" alt="CSU Monterey Bay Logo" width="149" height="86px">
+    </footer>
 
 
 
-    </body>
+</body>
 
 </html>
