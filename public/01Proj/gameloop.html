@@ -16,7 +16,7 @@
 
     <body>
         <header>
-            <h1>Double Buffer</h1>
+            <h1>Game Loop</h1>
         </header>
         <nav>
             <hr width="50%" />
@@ -35,7 +35,7 @@
         <main>
 
 
-            <div id="bufferOverview">
+            <div id="loopOverview">
                 <h2>The Problem</h2>
                 <p>Computers typically operate in sequential way by breaking large tasks into smaller ones. 
                 In this way, computers will perform one task at a time, one after another. 
@@ -48,27 +48,28 @@
             
             <br /><br />
             
-            <div id="bufferKeyIdea">
-                <h2>How Does Double Buffering Work?</h2>
-                <p>Video games use 2 framebuffers, instead of 1. 
-                The first framebuffer shows the player the current image, 
-                meanwhile, the next image is written to the second buffer. 
-                By instantly swapping buffers, the player sees a seamless transition to the next frame. 
-                It is a constant cycle of showing the player one buffer, writing to the next buffer, swapping buffers, writing to then next buffer, and repeat.</p>
-            <img src="img/08buffer.png"/>
+            <div id="loopKeyIdea">
+                <h2>The Pattern</h2>
+                <p>A game loop runs continuously during gameplay. 
+                Each turn of the loop, it processes user input without blocking, updates the game state, and renders the game. 
+                It tracks the passage of time to control the rate of gameplay.</p>
+                
+                <p>The intention behind design patterns is not to use as many as you can. 
+                However, the Game Loop pattern can be found in almost every video game imaginable.
+                Even if the game is not always waiting for the player for input, sound and animations are almost always act true to this pattern.</p>
+        
             </div>
             
             <br /><br />
             
-            <div id="bufferKeyIdea2">
-                <h2>When to Use It</h2>
-                <p>It is appropriate to use this method when all of these criteria are true:</p>
-                <ul id="criteria">
-                <li>We have some state that is being modified incrementally.</li>
-                <li>That same state may be accessed in the middle of modification.</li>
-                <li>We want to prevent the code that’s accessing the state from seeing the work in progress.</li>
-                <li>We want to be able to read the state and we don’t want to have to wait while it’s being written.</li>
-
+            <div id="loopKeyIdea2">
+                <h2>The Simplest Game Loop</h2>
+                <p>Here is one of the simplest examples of a game loop: </p>
+                <img src="img/09simpleloop.JPG" />
+                <p>The problem with this example is it would be too fast for a faster computer
+                and too slow for older, slower, hardware.
+                To solve this problem and keep frames per second in mind, use this: </p>
+                <img src="img/10frames.JPG" />
                 <br /><br />
             </ul>
             </div>

@@ -61,7 +61,7 @@ table {
 }
 
 td {
-    
+
     padding-right: 10px;
     font-size: 1.3em;
 }
@@ -88,12 +88,16 @@ ul {
     color: yellow;
 }
 
-#protoOverview {
+#protoOverview,
+#keyIdea,
+#bufferKeyIdea,
+#bufferKeyIdea2,
+#bufferOverview, #loopOverview, #loopKeyIdea, #loopKeyIdea2 {
     margin: 0px 500px 0px 250px;
-    
+
 }
 
-#keyIdea {
-    margin: 0px 500px 0px 250px;
-    
+#criteria {
+    margin: 0px 0px 0px -120px;
+
 }
