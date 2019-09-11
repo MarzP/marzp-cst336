@@ -5,65 +5,60 @@
 <head>
     <meta charset="utf-8" />
     <title>Design Pattern: Double Buffer </title>
+    <style>
+        #home {
+            font-weight: bolder;
+        }
+    </style>
 </head>
-<style>
-    #home {
-        font-weight: bolder;
-    }
-</style>
+
+
+
 
 <body style="background-color:black; color:white">
+    <header>
+        <h1>Double Buffer</h1>
+    </header>
+    <nav>
+        <hr width="50%" />
+        <a href="index.html">Overview</a>
+        <a href="prototype.html">Prototype</a>
+        <!---->
+        <a href="doublebuffer.html">Double Buffer</a>
+        <!--http://gameprogrammingpatterns.com/double-buffer.html-->
+        <a href="gameloop.html">Game Loop</a>
+        <!--http://gameprogrammingpatterns.com/game-loop.html-->
+        <a href="biblio.html">Links Used</a>
+    </nav>
 
-    <body>
-        <header>
-            <h1>Double Buffer</h1>
-        </header>
-        <nav>
-            <hr width="50%" />
-            <a href="index.html">Overview</a>
-            <a href="prototype.html">Prototype</a>
-            <!---->
-            <a href="doublebuffer.html">Double Buffer</a>
-            <!--http://gameprogrammingpatterns.com/double-buffer.html-->
-            <a href="gameloop.html">Game Loop</a>
-            <!--http://gameprogrammingpatterns.com/game-loop.html-->
-            <a href="biblio.html">Links Used</a>
-        </nav>
+    <br /> <br />
 
-        <br /> <br />
-
-        <main>
+    <main>
 
 
-            <div id="bufferOverview">
-                <h2>The Problem</h2>
-                <p>Computers typically operate in sequential way by breaking large tasks into smaller ones. 
-                In this way, computers will perform one task at a time, one after another. 
-                Modern computers are so fast that the human eye cannot perceive each step, namely in image processing. </p> 
-                <p>However, in the world of video games, the computer must render graphics in real time, and update each image every frame.
-                Since computers perform one task at a time, running video games in this way runs into a problem. 
-                Graphics are constantly being rendered while the game runs.
-                The intention of this design pattern is to display every pixel at the same time, instead of one pixel at a time.</p>
-            </div>
-            
-            <br /><br />
-            
-            <div id="bufferKeyIdea">
-                <h2>How Does Double Buffering Work?</h2>
-                <p>Video games use 2 framebuffers, instead of 1. 
-                The first framebuffer shows the player the current image, 
-                meanwhile, the next image is written to the second buffer. 
-                By instantly swapping buffers, the player sees a seamless transition to the next frame. 
-                It is a constant cycle of showing the player one buffer, writing to the next buffer, swapping buffers, writing to then next buffer, and repeat.</p>
-            <img src="img/08buffer.png"/>
-            </div>
-            
-            <br /><br />
-            
-            <div id="bufferKeyIdea2">
-                <h2>When to Use It</h2>
-                <p>It is appropriate to use this method when all of these criteria are true:</p>
-                <ul id="criteria">
+        <div id="bufferOverview">
+            <h2>The Problem</h2>
+            <p>Computers typically operate in sequential way by breaking large tasks into smaller ones. In this way, computers will perform one task at a time, one after another. Modern computers are so fast that the human eye cannot perceive each step,
+                namely in image processing. </p>
+            <p>However, in the world of video games, the computer must render graphics in real time, and update each image every frame. Since computers perform one task at a time, running video games in this way runs into a problem. Graphics are constantly
+                being rendered while the game runs. The intention of this design pattern is to display every pixel at the same time, instead of one pixel at a time.</p>
+        </div>
+
+        <br /><br />
+
+        <div id="bufferKeyIdea">
+            <h2>How Does Double Buffering Work?</h2>
+            <p>Video games use 2 framebuffers, instead of 1. The first framebuffer shows the player the current image, meanwhile, the next image is written to the second buffer. By instantly swapping buffers, the player sees a seamless transition to the
+                next frame. It is a constant cycle of showing the player one buffer, writing to the next buffer, swapping buffers, writing to then next buffer, and repeat.</p>
+            <img src="img/08buffer.png" />
+        </div>
+
+        <br /><br />
+
+        <div id="bufferKeyIdea2">
+            <h2>When to Use It</h2>
+            <p>It is appropriate to use this method when all of these criteria are true:</p>
+            <ul id="criteria">
                 <li>We have some state that is being modified incrementally.</li>
                 <li>That same state may be accessed in the middle of modification.</li>
                 <li>We want to prevent the code that’s accessing the state from seeing the work in progress.</li>
@@ -71,20 +66,20 @@
 
                 <br /><br />
             </ul>
-            </div>
-        </main>
+        </div>
+    </main>
 
-       <br /><br />
+    <br /><br />
 
-        <footer>
-            <hr> CST 336 Internet Programming. 2019&copy. Pimentel <br />
+    <footer>
+        <hr> CST 336 Internet Programming. 2019&copy. Pimentel <br />
 
-            <br />
-            <img src="img/csumb.png" alt="CSU Monterey Bay Logo" width="149" height="86px">
-        </footer>
+        <br />
+        <img src="img/csumb.png" alt="CSU Monterey Bay Logo" width="149" height="86px">
+    </footer>
 
 
 
-    </body>
+</body>
 
 </html>
