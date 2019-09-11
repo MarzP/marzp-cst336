@@ -23,7 +23,7 @@ nav a:hover {
     transition: .9s;
 }
 
-#welcomeText {
+#welcomeText, #welcomeText2 {
     float: left;
     text-indent: 200px;
 }
@@ -92,7 +92,10 @@ ul {
 #keyIdea,
 #bufferKeyIdea,
 #bufferKeyIdea2,
-#bufferOverview, #loopOverview, #loopKeyIdea, #loopKeyIdea2 {
+#bufferOverview,
+#loopOverview,
+#loopKeyIdea,
+#loopKeyIdea2 {
     margin: 0px 500px 0px 250px;
 
 }
