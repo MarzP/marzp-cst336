@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Now You See It in jQuery</title>
+
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <img id="see" src="imgcat/01now-you-see-me.png" />
+
+    <div>
+        <button id="change">Hide the cat</button>
+        <button id="moon">Send cat to the moon</button>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        //let seeImage = document.getElementById('see');
+        let seeImage = $("#see");
+
+        //let changeButton = document.getElementById('change');
+        let changeButton = $("#change");
+
+        // changeButton.addEventListener('click', function(e) {
+        //     seeImage.setAttribute('src', 'imgcat/02now-you-dont.png');
+        // });
+
+        changeButton.on('click', function(e) {
+                        seeImage.attr('src', 'imgcat/02now-you-dont.png');
+                    });
+
+                    // document
+                    // .getElementById('moon')
+                    // .addEventListener('click', function(e) {
+                    //     seeImage.setAttribute('class', 'hide');
+                    // });
+                    
+                    $("#moon").on('click', onMoonClick)
+                    
+                    function onMoonClick(e) {
+                        seeImage.attr('class','hide');
+                    }
+                    
+    </script>
+
+
+
+</body>
+
+</html>
