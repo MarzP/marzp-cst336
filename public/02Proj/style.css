@@ -1,0 +1,95 @@
+/*Project 2 stylesheet*/
+
+
+/*1*/
+body{
+    background: #a5d1b1 !important;
+    max-width: 80% !important;
+    margin: auto !important;
+}
+/*2*/
+.slot-border{
+    border-width:20px !important;
+    width: 15% !important;
+    height: 200px !important;
+    margin: 30px;
+}
+/*3*/
+.my-button{
+    width: 10%;
+}
+/*4*/
+.yellow{
+    background-color: yellow !important;
+}
+/*5*/
+.blue{
+    background-color: blue !important;
+}
+/*6*/
+.red{
+    background-color: red !important;
+}
+/*7*/
+.green{
+    background-color: green !important;
+}
+/*8*/
+.orange{
+    background-color: orange !important;
+}
+/*9*/
+.purple{
+    background-color: purple !important;
+}
+/*10*/
+.white{
+    background-color: white !important;
+}
+/*11*/
+.jumbotron{
+    font-family: "Impact, Charcoal, sans-serif" !important;
+    font-size: 4em !important;
+}
+/*12*/
+input{
+    height: 70px;
+    font-size: 2em;
+    max-width: 200px;
+    font-family: "Impact, Charcoal, sans-serif" !important;
+    /*background-color: lightgrey;*/
+    border-width: 15px;
+}
+/*13*/
+#eventSum{
+    font-family: "Impact, Charcoal, sans-serif" !important;
+}
+/*14*/
+#currentScore{
+    font-family: "Impact, Charcoal, sans-serif" !important;
+}
+/*15*/
+h3{
+    font-family: "Impact, Charcoal, sans-serif" !important;
+}
+/*16*/
+button{
+    font-family: "Impact, Charcoal, sans-serif" !important;
+}
+/*17*/
+#validationFdbk{
+    font-family: "Impact, Charcoal, sans-serif" !important;
+    font-size: 3em;
+}
+/*18*/
+.brown{
+    background-color: brown !important;
+}
+/*19*/
+.black{
+    background-color: black !important;
+}
+/*20*/
+.grey{
+    background-color: grey !important;
+}
