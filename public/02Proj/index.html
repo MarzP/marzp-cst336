@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Project Thing</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <h3><span id="markImg1"></span> Project Requirement 1: Textbox for User Input</h3>
+    <input type="type" id="q1">
+    <br><br>
+    <div id="q1Feedback"></div>
+    <br>
+
+    <h3 id="validationFdbk" class="bg-danger text-white"></h3>
+    <button class="btn btn-outline-success"> Submit Quiz </button>
+    <br>
+
+</body>
+<!--bootstrap-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function() {
+        //Global variables
+        var score = 0;
+        
+        //event listeners
+        //submit quiz button
+        $("button").on("click", gradeQuiz);
+        
+        //functions
+        function isFormValid() {
+            let isValid = true;
+            console.log("is form valid func");
+            if ($("#q1").val() == "") {
+                isValid = false;
+                $("#validationFdbk").html("Question 1 was not answered");
+            }
+            return isValid;
+        }
+        
+        function gradeQuiz() {
+            $("#validationFdbk").html(""); // resets validation feedback
+
+            if (!isFormValid()) {
+                return;
+            }
+            console.log("grade quiz func");
+        }
+    });
+</script>
+
+</html>
