@@ -5,7 +5,11 @@
     <meta charset="utf-8">
     <title>US Geography Quiz</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+    <style type="text/css">
+        body{
+            background: lightblue !important;
+        }
+    </style>
 </head>
 
 <body class="text-center">
@@ -74,7 +78,7 @@
     <div id="q7Feedback"></div>
     <br>
 
-    <h3><span id="markImg8"></span>Objectively, What is the Most Problematic State in the US?</h3>
+    <h3><span id="markImg8"></span>Which State has the smallest population?</h3>
     <div id="q8Choices"></div>
     <div id="q8Feedback"></div>
     <br>
@@ -83,6 +87,8 @@
     <button class="btn btn-outline-success"> Submit Quiz </button>
     <br>
     <h2 id="totalScore" class="text-info"></h2>
+    <h2 id="previousScore" class = "text-info"></h2>
+    <h2 id="attempts" class = "text-info"></h2>
 </body>
 
 <!--bootstrap-->
@@ -125,7 +131,7 @@
         }
 
         function displayQ8Choices() {
-            let q8ChoicesArray = ["Texas", "South Carolina", "Missouri", "Arkansas"];
+            let q8ChoicesArray = ["Wyoming", "Utah", "Idaho", "Vermont"];
             q8ChoicesArray = _.shuffle(q8ChoicesArray);
 
             for (let i = 0; i < q8ChoicesArray.length; i++) {
@@ -149,7 +155,7 @@
             $(`#q${index}Feedback`).html("Correct!");
             $(`#q${index}Feedback`).attr("class", "bg-success text-white");
             $(`#markImg${index}`).html("<img src ='img/checkmark.png'>");
-            score += 20;
+            score += 12.5;
         }
 
         function rightAnswer678(index) {
@@ -242,7 +248,7 @@
             }
             
             //Question 8
-            if (q8Response == "Arkansas") {
+            if (q8Response == "Wyoming") {
                 rightAnswer678(8);
             }
             else {
@@ -250,8 +256,27 @@
             }
 
 
-            $("#totalScore").html("Total Score: " + score);
-            console.log(score);
+            if(score == 100){
+                $("#totalScore").html("Total Score: " + score + ", Congratulations!");
+                console.log(score);
+            }
+            else{
+                $("#totalScore").html("Total Score: " + score);
+                console.log(score);
+            }
+            
+            if (localStorage.timesTaken) {
+                localStorage.timesTaken = Number(localStorage.timesTaken) + 1;
+            } 
+            else {
+                 localStorage.timesTaken = 1;
+            }
+            
+            $("#previousScore").html("Previous Score: " + localStorage.getItem("lastScore"));
+            $("#attempts").html("Times Taken: " + (Number(localStorage.timesTaken)));
+            
+            localStorage.setItem("lastScore", score);
+            
         }
     }) //ready
 </script>
