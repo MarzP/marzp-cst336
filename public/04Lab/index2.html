@@ -57,10 +57,15 @@
              success: function(result,status) {
                   
                   //alert(result.city);
+                  if(result.city != null) {
                     $("#city").html(result.city);
                     $("#latitude").html(result.latitude);
                     $("#longitude").html(result.longitude);
-                
+                  } else {
+                      $("#city").html("Error: No city found");
+                    $("#latitude").html("Error: No latitude found");
+                    $("#longitude").html("Error: No longitude found");
+                  }
                 }
                 
             });//ajax
