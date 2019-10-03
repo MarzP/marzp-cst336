@@ -21,11 +21,11 @@
         Longitude:  <span id="longitude"></span> <br>
        
         State: 
-        <select id="state" name="state">
-           <option> Select One </option> 
-           <option value="ca"> California </option>
-           <option value="ny"> New York   </option>
-           <option value="tx"> Texas      </option>
+        <select id="state" >
+           <!--<option> Select One </option> -->
+           <!--<option value="ca"> California </option>-->
+           <!--<option value="ny"> New York   </option>-->
+           <!--<option value="tx"> Texas      </option>-->
         </select><br>
         
         Select a County: <select id="county"></select><br>
@@ -66,6 +66,30 @@
             });//ajax
         });//zip
         
+        //display states
+        $("#state").on("click", function() {
+            
+            //alert($("#state").val());
+            
+            $.ajax({
+                method: "GET",
+                  url: "https://cst336.herokuapp.com/projects/api/state_abbrAPI.php",
+              dataType: "json",
+                  data: { "state": $("#state").val() },
+              success: function(result,status) {
+                    
+                  $("#state").html("<option> Select One </option>");
+                  for (let i=0; i < result.length; i++){
+                      $("#state").append("<option value= " + result[i].usps.toLowerCase() + ">" + result[i].state + "</option>");
+                      //$("#state").append("<option value>" + result[i].usps.toLowerCase() + "</value>");
+                      //console.log(state);
+                  }  
+                
+                }
+            });//ajax
+        }); //state
+        
+        //dislay counties
         $("#state").on("change", function() {
             
             //alert($("#state").val());
@@ -81,11 +105,13 @@
                   $("#county").html("<option> Select One </option>");
                   for (let i=0; i < result.length; i++){
                       $("#county").append("<option>" + result[i].county + "</option>");
-                  }                  
-                
+                  }    
+                 
                 }
             });//ajax
         }); //state
+        
+        
         
         $("#username").change(function() {
             
