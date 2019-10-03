@@ -1,0 +1,143 @@
+<html>
+
+<head>
+    <title></title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+    <style>
+        tr,
+        td {
+            border: 1px gray solid;
+            text-align: right;
+            padding: 5px;
+        }
+
+        body,
+        th {
+            text-align: center;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="jumbotron"> Holiday Shopping </h1>
+
+    <h2> Cart </h2>
+
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Unit Price</th>
+            <th> Quantity </th>
+            <th>Total</th>
+        </tr>
+
+        <tr>
+            <td>Fruit Cake</td>
+            <td>$30</td>
+            <td><input type="text" class="qty" id="qty_item1" size="5" value="1"> </td>
+            <td id="totalItem1">$30</td>
+        </tr>
+
+        <tr>
+            <td>Piñata (Medium size)</td>
+            <td>$20</td>
+            <td><input type="text" class="qty" id="qty_item2" size="5" value="2"> </td>
+            <td id="totalItem2">$40</td>
+        </tr>
+
+        <tr>
+            <td>Shipping</td>
+            <!--<td>Next-day: $15.00</td>-->
+            <!--<td>3-day: $10.00 </td>-->
+            <!--<td>Regular: $5.00 </td>-->
+            <td></td>
+            <td></td>
+            <td id="shippingCost">--</td>
+        </tr>
+
+        <tr>
+            <td>Subtotal</td>
+            <td> </td>
+            <td> </td>
+            <td id="subtotal">$80</td>
+        </tr>
+
+        <tr>
+            <td>Tax (10%)</td>
+            <td></td>
+            <td></td>
+            <td id="tax">$8</td>
+        </tr>
+
+        <tr>
+            <td>Total</td>
+            <td></td>
+            <td></td>
+            <td id="total">$88</td>
+        </tr>
+    </table>
+
+    <h3>Shipping & handling</h3>
+    <select id="shippingOptions">
+            <option value="">Select One</option>
+            <option value="nd">Next-Day Delivery: $15.00</option>
+            <option value="3d">3-Day Delivery: $10.00</option>
+            <option value="re">Regular: $5.00</option>
+        </select>
+    <br><br>
+
+    <button class="btn btn-outline-success"> Update Selection </button>
+    <br><br>
+
+    <input type="checkbox" id="terms" name="terms">
+    <span id="termsMessage">I accept the terms of this purchase.</span>
+
+    <br><br>
+
+    <input type="submit" value="CONFIRM PURCHASE" />
+</body>
+<script>
+    $(document).ready(function() {
+        let shippingResponse = $("#shippingOptions").val();
+        let qty1Response = $("#qty_item1").val();
+        
+        console.log("shippingReponse b4 function:", shippingResponse);
+        $("button").on("click", updateForm);
+
+        function updateForm() {
+            var qty1Total = 30 * qty1Response;
+            $("#qty_item1").html("");
+            
+            ////////////////////
+            //Shipping Options//
+            ////////////////////
+            
+            shippingResponse = $("#shippingOptions").val();
+            console.log("in UpdateForm function");
+            console.log(shippingResponse);
+            if (shippingResponse == "") {
+                $("#shippingCost").html("--");
+            }
+            if (shippingResponse == "nd") {
+                $("#shippingCost").html("$15");
+            }
+            if (shippingResponse == "3d") {
+                $("#shippingCost").html("$10");
+            }
+            if (shippingResponse == "re") {
+                $("#shippingCost").html("$5");
+            }
+        }
+    })
+</script>
+
+</html>
