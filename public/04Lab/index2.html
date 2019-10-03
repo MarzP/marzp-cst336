@@ -62,7 +62,8 @@
                     $("#latitude").html(result.latitude);
                     $("#longitude").html(result.longitude);
                   } else {
-                      $("#city").html("Error: Zip Code Not Found");
+                      alert("Error: Zip Code Not Found");
+                      $("#city").html("Error: City Not Found");
                     $("#latitude").html("Error: No latitude found");
                     $("#longitude").html("Error: No longitude found");
                   }
