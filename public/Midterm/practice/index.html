@@ -1,0 +1,258 @@
+<html>
+
+<head>
+
+    <title>CST336 Midterm Exam Practice</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            //Event Listeners
+            $("#qty1").change(calculateTotal);
+            $("#qty2").change(calculateTotal);
+            $("#shipping").on("change", calculateTotal);
+            //Apply Button
+            $("#applyPromo").click(getDiscount);
+
+            //Global Variables
+            var discount = 0;
+
+            //Making AJAX call as soon as the page loads to get a random product
+            $.ajax({
+
+                method: "GET",
+                url: "https://cst336.herokuapp.com/projects/api/promo_products.php",
+                dataType: "json",
+                //data: { },  //data is NOT needed, the end point doesn't use any parameter
+                success: function(result, status) {
+                    let index = Math.floor(Math.random() * result.length);
+                    let index2 = Math.floor(Math.random() * result.length);
+                    $("#product1").html(result[index].productName);
+                    $("#price1").html(result[index].price);
+                    //$("#qty1").val(result[index].qty);
+
+                    $("#product2").html(result[index2].productName);
+                    $("#price2").html(result[index2].price);
+                    //$("#qty2").val(result[index2].qty);
+                    calculateTotal();
+                }
+
+            }); //ajax
+        }); //document.ready
+
+        //Functions
+
+        function calculateTotal() {
+
+            let totalItem1 = $("#price1").html() * $("#qty1").val();
+            $("#totalItem1").html(`$${totalItem1}`);
+
+            let totalItem2 = $("#price2").html() * $("#qty2").val();
+            $("#totalItem2").html(`$${totalItem2}`);
+
+
+            let appliedDiscount = (totalItem1 * (discount / 100)) + (totalItem2 * (discount / 100))
+            $("#appliedDiscount").html(`-$${appliedDiscount}`);
+
+
+            let shipping = $("#shipping").val();
+            document.getElementById("shippingCost").innerHTML = "$" + shipping;
+
+            let subtotal = totalItem1 - appliedDiscount + parseInt(shipping);
+
+            document.getElementById("subtotal").innerHTML = "$" + parseInt(subtotal);
+
+            document.getElementById("tax").innerHTML = "$" + parseInt(subtotal * .10);
+            document.getElementById("total").innerHTML = "$" + (Math.round(subtotal * 1.10));
+
+        }
+
+        function getDiscount() {
+
+            $("#promoError").html("");
+
+            $.ajax({
+
+                method: "GET",
+                url: "https://cst336.herokuapp.com/projects/api/promo_codes.php",
+                dataType: "json",
+                data: { "promoCode": $("#promo").val() },
+                success: function(result, status) {
+                    discount = result.discount;
+                    if (!discount) {
+                        $("#promoError").html("Promo code doesn't exist!");
+                        $("#discount").html("")
+                        discount = 0;
+                    }
+                    else {
+                        $("#discount").html(result.discount + "%");
+                    }
+                    calculateTotal();
+                }
+
+            }); //ajax
+
+        }
+    </script>
+
+
+    <style>
+        tr,
+        td {
+
+            border: 1px gray solid;
+
+            text-align: right;
+
+            padding: 5px;
+
+        }
+
+        body,
+        th {
+
+            text-align: center;
+
+        }
+
+        table {
+
+            margin: 0 auto;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1 class="jumbotron"> End-of-Summer Sale! </h1>
+
+    <h2> Cart </h2>
+
+    <table>
+
+        <tr>
+
+            <th>Product</th>
+
+            <th>Unit Price</th>
+
+            <th> Quantity </th>
+
+            <th>Total</th>
+
+        </tr>
+
+        <tr>
+
+            <td id="product1"> </td>
+
+            <td id="price1"> </td>
+
+            <td><input type="text" id="qty1" size="0"></td>
+
+            <td id="totalItem1"> </td>
+
+        </tr>
+
+        <tr>
+
+            <td id="product2"> </td>
+
+            <td id="price2"> </td>
+
+            <td><input type="text" id="qty2"></td>
+
+            <td id="totalItem2"> </td>
+
+        </tr>
+
+        <tr>
+
+            <td>Discount</td>
+
+            <td> </td>
+
+            <td id="discount"> </td>
+
+            <td id="appliedDiscount"> </td>
+
+        </tr>
+
+        <tr>
+
+            <td>Shipping</td>
+
+            <td> </td>
+
+            <td> </td>
+
+            <td id="shippingCost"> </td>
+
+        </tr>
+
+        <tr>
+
+            <td>Subtotal</td>
+
+            <td> </td>
+
+            <td> </td>
+
+            <td id="subtotal"> </td>
+
+        </tr>
+
+
+
+        <tr>
+
+            <td>Tax (10%)</td>
+
+            <td></td>
+
+            <td></td>
+
+            <td id="tax"> </td>
+
+        </tr>
+
+        <tr>
+
+            <td>Total</td>
+
+            <td></td>
+
+            <td></td>
+
+            <td id="total"> </td>
+
+        </tr>
+
+    </table>
+
+    <br><br>
+
+    <strong>Promo Code: </strong>
+    <input type="text" id="promo">
+    <button id="applyPromo">Apply</button>
+    <br>
+    <strong class="text-danger" id="promoError"></strong>
+    <br>
+
+
+    <h3>Shipping & handling</h3>
+    <select id="shipping">
+        <option value='25'>Next-day Delivery: $25.00</option>
+        <option value='20'>Three-day Delivery: $20.00</option>
+        <option value='7' selected>Regular Delivery: $7.00</option>
+    </select>
+
+</body>
+
+</html>

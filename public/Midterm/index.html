@@ -1,0 +1,202 @@
+<html>
+
+<head>
+
+    <title> Interesting History Facts </title>
+    <!--bootstrap-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--jquery-->
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            //Event Listeners
+            $("#likesImg").click(IncreaseLike);
+            $("#dislikesImg").click(IncreaseDislike);
+            $("#seeCommentsButton").click(UpdateComments);
+            $("#answerQuestionsButton").click(UpdateQuestions);
+            $("#questions").change(GradeQuestion);
+            //Global Variables
+
+            //Ajax
+            //https://cst336.herokuapp.com/projects/api/videoLikesAPI.php?videoId=xyz
+            //Making AJAX displaying likes + dislikes
+            $.ajax({
+
+                method: "GET",
+                url: "https://cst336.herokuapp.com/projects/api/videoLikesAPI.php?videoId=xyz",
+                dataType: "json",
+                data: { "likes": $("#vidLikes").val(), "dislikes": $("#vidDislikes").val() },
+                success: function(result, status) {
+                    $("#vidLikes").html(result.likes);
+                    $("#vidDislikes").html(result.dislikes);
+                }
+
+            }); //ajax
+
+
+        }); //document.ready
+
+        //Functions
+        function IncreaseLike() {
+            console.log("liked");
+            if (document.getElementById("likesImg").alt == "notLiked") {
+                $("#likesImg").attr("src", "like.png");
+                $("#likesImg").attr("alt", "Liked");
+            }
+            else if (document.getElementById("likesImg").alt == "Liked") {
+                $("#likesImg").attr("src", "cancel-like.png");
+                $("#likesImg").attr("alt", "notLiked");
+            }
+            //https://cst336.herokuapp.com/projects/api/videoLikesAPI.php?videoId=dQw4w9WgXcQ&action=action
+            // $.ajax({
+
+            //     method: "GET",
+            //     url: "https://cst336.herokuapp.com/projects/api/videoLikesAPI.php?videoId=dQw4w9WgXcQ&action=action",
+            //     dataType: "json",
+            //     data: { "likes": $("#vidLikes").val(), "dislikes": $("#vidDislikes").val() },
+            //     success: function(result, status) {
+            //         $("#vidLikes").html(result.likes);
+            //         $("#vidDislikes").html(result.dislikes);
+            //     }
+
+            // }); //ajax
+
+            
+        }
+
+        function IncreaseDislike() {
+            console.log("disliked");
+            $("#dislikesImg").attr("src", "dislike.png");
+
+            if (document.getElementById("dislikesImg").alt == "notDisliked") {
+                $("#dislikesImg").attr("src", "dislike.png");
+                $("#dislikesImg").attr("alt", "Disliked");
+            }
+            else if (document.getElementById("dislikesImg").alt == "Disliked") {
+                $("#dislikesImg").attr("src", "cancel-dislike.png");
+                $("#dislikesImg").attr("alt", "notDisliked");
+            }
+            
+            
+        }
+        
+        function UpdateComments() {
+            console.log("update comments");
+            $.ajax({
+                method: "GET",
+                url: "https://cst336.herokuapp.com/projects/api/videoLikesAPI.php?videoId=dQw4w9WgXcQ&action=comments",
+                dataType: "json",
+                //data: { "promoCode": $("#promo").val()},
+                success: function(result, status) {
+                    let index = Math.floor(Math.random() * result.length);
+                    let index2 = Math.floor(Math.random() * result.length);
+                    let index3 = Math.floor(Math.random() * result.length);
+                    let index4 = Math.floor(Math.random() * result.length);
+                    $("#author1").html(result[index].author);
+                    $("#date1").html(result[index].date);
+                    $("#comment1").html(result[index].comment);
+                    
+                    $("#author2").html(result[index2].author);
+                    $("#date2").html(result[index2].date);
+                    $("#comment2").html(result[index2].comment);
+                    
+                    $("#author3").html(result[index3].author);
+                    $("#date3").html(result[index3].date);
+                    $("#comment3").html(result[index3].comment);
+                    
+                    $("#author4").html(result[index4].author);
+                    $("#date4").html(result[index4].date);
+                    $("#comment4").html(result[index4].comment);
+                    
+                }
+            }); //ajax
+            
+        }
+        
+        function UpdateQuestions() {
+            console.log("answer Questions");
+            document.getElementById("what").style.display = "initial";
+            document.getElementById("questions").style.display = "initial";
+        }
+        
+        function GradeQuestion() {
+            let Response = $("#questions").val();
+            console.log(Response);
+            if(Response == "rr") {
+                console.log("Correct");
+                $(`#markImg1`).attr("class", "bg-success text-white");
+                $(`#markImg1`).html("Correct!");
+            } else {
+                console.log("wrong");
+                $(`#markImg1`).attr("class", "bg-warning text-white");
+                $(`#markImg1`).html("Wrong!");
+            }
+            
+        }
+        
+    </script>
+    <style>
+        body {
+
+            text-align: center;
+        }
+        
+        
+    </style>
+
+    <body>
+        <h1 class="jumbotron"> Midterm </h1>
+        <!--Never Gonna Give You Up-->
+        <iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br>
+<!--Likes Button and Display-->
+        <div id="vidLikes">
+        </div>
+        <img src="cancel-like.png" class="likesImg" id="likesImg" alt="notLiked">
+
+
+        <!--Dislikes Button and Display-->
+        <div id="vidDislikes">
+
+        </div>
+        <img src="cancel-dislike.png" class="dislikesImg" id="dislikesImg" alt="notDisliked">
+        <br>
+        <!--See Comments Section-->
+        <button class="btn seeCommentsButton" id="seeCommentsButton"> See Comments </button>
+        <div id="author1"></div>
+        <div id="date1"></div>
+        <div id="comment1"></div>
+        <br>
+        <div id="author2"></div>
+        <div id="date2"></div>
+        <div id="comment2"></div>
+        <br>
+        <div id="author3"></div>
+        <div id="date3"></div>
+        <div id="comment3"></div>
+        <br>
+        <div id="author4"></div>
+        <div id="date4"></div>
+        <div id="comment4"></div>
+        <br>
+
+        <!--Answer Questions Section-->
+        <button class="btn answerQuestionsButton" id="answerQuestionsButton"> Answer Questions </button>
+        <br>
+        <h4 style="display:none" id="what"> </span>What Just Happened?</h4>
+        <br>
+        <select style="display:none" id="questions">
+            <option value="">Select Correct Answer</option>
+            <option value="ed">I Watched an educational video about History</option>
+            <option value="wa">Wakko sang about all 50 States</option>
+            <option value="no">Nothing</option>
+            <option value="rr">I Got Rick'rolled</option>
+        </select>
+        <br>
+        <div id="markImg1">
+    </body>
+</head>
+
+</html>

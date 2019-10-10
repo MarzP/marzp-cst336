@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Using Pixabay API</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h3><span id="01thing"></span> What Serch</h3>
+    <input type="type" id="q1">
+    <br><br>
+
+    <h3 id="validationFdbk" class="bg-danger text-white"></h3>
+    <button class="btn btn-outline-success"> Submit Query</button>
+
+    <script>
+    
+        //event listeners
+        //submit quiz button
+        $("button").on("click", updatePixabay);
+        
+        let searchInput = $("#q1").val().toLowerCase();
+        let apiURL = "https://pixabay.com/api/";
+        
+        console.log(searchInput);
+        console.log(apiURL);
+         function updatePixabay() {
+             apiURL = "https://pixabay.com/api/" + searchInput;
+             console.log(searchInput);
+        console.log(apiURL);
+        //     $.ajax({
+        //       method: "GET",
+        //          url: "",
+        //     dataType: "json",
+        //         data: { "": $("#").val() },
+        //      success: function(result,status) {
+                  
+                  
+        //         }
+                
+        //     });//ajax
+         }
+   
+    </script>
+</body>
+
+</html>
