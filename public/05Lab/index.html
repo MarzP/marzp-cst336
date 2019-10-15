@@ -46,7 +46,7 @@
 
         <script>
             /* global $ */
-            var API_KEY="13944946-19a9f2fa6c30e8ce9ea1ae987";
+            var API_KEY="13831310-cbee89d52c56545c1331abbec";
             
             $("#vert").on("click", function(){
                 console.log("Button pushed");
@@ -54,3 +54,46 @@
                 $.ajax({
                     method: "GET",
                     url: "https://pixabay.com/api/?key=" + API_KEY + "&q=" + $("#mySearch").val() + "&orientation=vertical",
+                    dataType: "json",
+                    data: { "state": $("#state").val() },
+                    success: function(result,status) {
+                        console.log("https://pixabay.com/api/?key=" + API_KEY + "&q=" + $("#mySearch").val() + "&orientation=vertical");
+                        $("#pic0").attr("src", result.hits[0].previewURL);
+                        $("#pic1").attr("src", result.hits[1].previewURL);
+                        $("#pic2").attr("src", result.hits[2].previewURL);
+                        $("#pic3").attr("src", result.hits[3].previewURL);
+                        
+                        $("#likes0").html("Likes: " + result.hits[0].likes);
+                        $("#likes1").html("Likes: " + result.hits[1].likes);
+                        $("#likes2").html("Likes: " + result.hits[2].likes);
+                        $("#likes3").html("Likes: " + result.hits[3].likes);
+                    }
+                });//ajax
+            });
+            
+            $("#horiz").on("click", function(){
+                console.log("Button pushed");
+                
+                $.ajax({
+                    method: "GET",
+                    url: "https://pixabay.com/api/?key=" + API_KEY + "&q=" + $("#mySearch").val() + "&orientation=horizontal",
+                    dataType: "json",
+                    data: { "state": $("#state").val() },
+                    success: function(result,status) {
+                        console.log("https://pixabay.com/api/?key=" + API_KEY + "&q=" + $("#mySearch").val() + "&orientation=horizontal");
+                        $("#pic0").attr("src", result.hits[0].previewURL);
+                        $("#pic1").attr("src", result.hits[1].previewURL);
+                        $("#pic2").attr("src", result.hits[2].previewURL);
+                        $("#pic3").attr("src", result.hits[3].previewURL);
+                        
+                        $("#likes0").html("Likes: " + result.hits[0].likes);
+                        $("#likes1").html("Likes: " + result.hits[1].likes);
+                        $("#likes2").html("Likes: " + result.hits[2].likes);
+                        $("#likes3").html("Likes: " + result.hits[3].likes);
+                    }
+                });//ajax
+            });
+        </script>
+        
+        </body>
+</html>
