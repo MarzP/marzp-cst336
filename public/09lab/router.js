@@ -2,6 +2,15 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
 
+router.get("/", async function(req, res, next){
+    
+    
+    
+    res.render("../public/09lab/views/index")
+        
+    
+    
+});//root
 
 router.get('/quotes', function(req, res, next) {
 
@@ -36,5 +45,7 @@ WHERE a.firstName LIKE '${nameFilter}'
     connection.end();
 
 });
+
+
 
 module.exports = router;

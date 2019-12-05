@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
 
+router.get("/", async function(req, res, next){
+    res.render("../public/10Lab/views/index")
+});//root
+
 router.get('/quotes/add', (req, res) => {
 
     // If this is an edit instead of an add (maybe change the route name from add to edit)

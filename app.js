@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ROUTING
 ////////////////////////////////////////////////////////////
 
-var lab9Router = require('./public/09lab/router');
+var lab9Router = require('./public/09lab/routertut');
 var lab10Router = require('./public/10Lab/router');
 
 app.use('/', indexRouter);
