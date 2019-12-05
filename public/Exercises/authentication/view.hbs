@@ -1,0 +1,52 @@
+<h1>{{title}}</h1>
+<hr />
+<!-- USE BOOTSTRAP FLEXBOX INSTEAD OF TABLES -->
+<table>
+    <tbody>
+        <tr>
+            <td><label>authorId</label></td>
+            <td><input id="authorId" type="text" /></td>
+        </tr>
+        <tr>
+            <td><label>quote</label></td>
+            <td><textarea rows="3" id="quote"></textarea></td>
+        </tr>
+        <tr>
+            <td><label>category</label></td>
+            <td><input id="category" type="text" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button id="saveButton">Add</button></td>
+        </tr>
+        <tr>
+            <td><label>id</label></td>
+            <td><input id="id" type="text" disabled /></td>
+        </tr>
+    </tbody>
+</table>
+<script>
+    $("#saveButton").on("click", function() {
+        $.ajax({
+            type: "POST",
+            url: "/lab/10/quotes/add",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify({
+                "authorId": $("#authorId").val(),
+                "quote": $("#quote").val(),
+                "category": $("#category").val(),
+            }),
+            success: function(data, status) {
+                console.log("got data back", data);
+            },
+            error: function(xhr, status, error) {
+                err = eval("(" + xhr.responseText + ")");
+                console.error(err);
+            },
+            complete: function(data, status) { //optional, used for debugging purposes
+                console.log(status);
+            }
+        });
+    })
+</script>
