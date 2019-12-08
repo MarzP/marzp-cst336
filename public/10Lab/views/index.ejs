@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title> Admin Page </title>
-    </head>
-    <body>
-        
-        <h1> Admin Page </h1>
-    </body>
-</html>
+<h1>{{title}}</h1>
+<hr />
+    <!-- USE BOOTSTRAP FLEXBOX INSTEAD OF TABLES -->
+    <table>
+        <thead>
+            <tr>
+                <th class="w-25">quote</th>
+                <th>author</th>
+                <th>category</th>
+                <th>
+                    <a class="btn btn-success" id="new" href="/lab/10/quotes/edit">Add New Quote</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+{{#each quotes}}
+            <tr>
+                <td>{{quote}}</td>
+                <td>{{fullName}}</td>
+                <td>{{category}}</td>
+                <td>
+                    <a class="btn btn-primary" href="/lab/10/quotes/edit?id={{quoteId}}">Edit</a>
+                    <a class="btn btn-danger" href="/lab/10/quotes/delete?id={{quoteId}}">Delete</a>
+                </td>
+            </tr>
+{{/each}}
+        </tbody>
+    </table>
