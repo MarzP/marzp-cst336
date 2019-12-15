@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title> Final Scheduler </title>
         <!--css-->
-        <link rel="stylesheet" href="/css/styles.css"/>
+        <!--<link rel="stylesheet" href="/css/styles.css"/>-->
         <!--bootstrap-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -24,20 +24,17 @@
                 <td><strong>Duration</strong></td>
                 <td><strong>Booked By</strong></td>
             </tr>
-            <tr class="table-row">
-                <td>
-                    <div id="displayDate"></div>
-                </td>
-                <td>
-                    <div id="displayStartTime"></div>
-                </td>
-                <td>
-                    <div id="displayDuration"></div>
-                </td>
-                <td>
-                    <div id="displayBookedBy"></div>
-                </td>
-            </tr>
+            
+            
+            <% timeSlots.forEach(function(timeSlot) { %>
+                <tr>
+                    <th><%= timeSlot.dateOfSlot %></th>
+                    <th><%= timeSlot.startTime %></th>
+                    <th><%= timeSlot.endTime %></th>
+                    <th><%= timeSlot.bookedByFirstName %></th>
+                </tr>
+            <% }); %>
+            
         </table>
         <br><br>
         <div id="message"></div>
@@ -46,27 +43,6 @@
         <!--Remove Button-->
         <!--Logout Button (Maybe put at top right)--> 
         
-        <script>
-            $(document).ready(function(){
-                getEvents();
-                
-                function getEvents() {
-                    $.ajax({
-                        method: "GET",
-                        url: "/getEvents",
-                        dataType: "json",
-                        success: function(result, status) {
-                        $("#message").hide();
-                        //if nothing in database
-                        if(result.length == 0) {
-                            $("#message").attr("class", "text-danger");
-                            $("#message").html("No Time Slots");
-                            $("#message").show();
-                        }
-                        }
-                    });//ajax
-                }//getEvents
-            });//Ready    
-        </script>
+        
     </body>
 </html>
