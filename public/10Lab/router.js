@@ -3,36 +3,11 @@ const router = express.Router();
 const mysql = require('mysql');
 
 router.get("/", async function(req, res, next){
-    const selectAllSql = `
-SELECT q.*, CONCAT(a.firstName, ' ', a.lastName) AS 'fullName', a.sex AS 'gender'
-FROM l9_quotes q INNER JOIN
-l9_author a ON q.authorId = a.authorId
-`;
-
-    const connection = mysql.createConnection({
-        host: 'olxl65dqfuqr6s4y.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-        user: 'lhgmlbcss59s9m0p',
-        password: 'vrf2lrmgmpwe02g5',
-        database: 'id9he8k3oeqj35ei'
-    });
-
-    connection.connect();
-
-    connection.query(selectAllSql,
-        function(error, results, fields) {
-            if (error) throw error;
-            // console.log('The quotes are: ', results);
-
-            res.render("../public/10Lab/views/index", {
-                title: 'Lab 10 Quotes',
-                quotes: results
-            });
-        });
-
-    connection.end();
+     let rows = await getQuotes(req.query);
     
+    res.render("../public/10Lab/views/index2", {"records":rows});
     
-});//root
+});//quotes
 
 ///////
 //add//
@@ -194,10 +169,10 @@ router.delete('/quotes/delete', function(req, res, next) {
     // back an error message and DO NOT attempt a DELETE
 
     const connection = mysql.createConnection({
-        host: 'p2d0untihotgr5f6.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-        user: 'zsn9kncqtvumywkk',
-        password: 'jrj24hhp4uchfj03',
-        database: 'pvfhxur2aptwj0sr'
+       host: 'olxl65dqfuqr6s4y.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+        user: 'lhgmlbcss59s9m0p',
+        password: 'vrf2lrmgmpwe02g5',
+        database: 'id9he8k3oeqj35ei'
     });
 
     connection.connect();
@@ -248,5 +223,83 @@ router.post('/quotes/add', function(req, res, next) {
     connection.end();
 
 });
+
+function getQuotes(query){
+    
+    let keyword = query.keyword;
+    let category = query.category;
+    let authorfirst = query.authorfirst;
+    let authorlast = query.authorlast;
+    let gender = query.gender;
+    let conn = dbConnection();
+    
+    return new Promise(function(resolve, reject){
+        conn.connect(function(err){
+            if(err) throw err;
+            console.log("Connected!");
+            
+            let sql = `SELECT quote, firstName, lastName, category, sex FROM l9_quotes
+                        NATURAL JOIN l9_author
+                        WHERE
+                        quote LIKE '%${keyword}%'`;
+                        
+            if (category){ //if the user selected a quote category
+                
+                sql += ` AND category = '${category}'`;
+            }
+            if (authorfirst){
+                
+                sql += ` AND firstName LIKE '%${authorfirst}%'`;
+            }
+            if (authorlast){
+                
+                sql += ` AND lastName LIKE '%${authorlast}%'`;
+            }
+            if (gender){
+                
+                sql += ` AND sex = '${gender}'`;
+            }
+            
+            conn.query(sql, function(err, rows, fields){
+                if(err) throw err;
+                //res.send(rows);
+                resolve(rows);
+            });
+        });//connect
+    });//promise
+}//getQuotes
+
+function dbConnection(){
+    
+    let conn = mysql.createConnection({
+        host: "olxl65dqfuqr6s4y.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        user: "lhgmlbcss59s9m0p",
+        password: "vrf2lrmgmpwe02g5",
+        database: "id9he8k3oeqj35ei"
+    });//createConnection
+    
+    return conn;
+}
+
+function getCategories(){
+    
+    let conn = dbConnection();
+    
+    return new Promise(function(resolve, reject){
+        conn.connect(function(err){
+            if(err) throw err;
+            console.log("Categories Connected!");
+            
+            let sql = `SELECT DISTINCT category FROM l9_quotes
+                        ORDER BY category`;
+            
+            conn.query(sql, function(err, rows, fields){
+                if(err) throw err;
+                //res.send(rows);
+                resolve(rows);
+            });
+        });//connect
+    });//promise
+}//getCategories
 
 module.exports = router;

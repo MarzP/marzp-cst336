@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+//for auth tut
+const session = require('express-session');
+const bcrypt = require('bcrypt');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -26,17 +29,40 @@ app.use(express.static(path.join(__dirname, 'public')));
 var lab9Router = require('./public/09lab/routertut');
 var lab10Router = require('./public/10Lab/router');
 
+//Final Router
+var finalRouter = require('./public/Final/router');
+
+//auth tut
+// var authExerRouter = require('./public/Exercises/authentication/router');
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 
 //Labs
 app.use('/lab/9', lab9Router);
 app.use('/lab/10', lab10Router);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+/////////
+//Final//
+/////////
+
+app.use('/final', finalRouter);
+
+//auth tut
+// //app.use('/', authExerRouter);
+// app.use(session({
+//   secret: "top secret!",
+//   resave: true,
+//   saveUninitialized: true
+// }));
+
+// app.get('/auth', authExerRouter);
+
+// // catch 404 and forward to error handler
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 // error handler
 app.use(function(err, req, res, next) {
