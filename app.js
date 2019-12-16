@@ -22,6 +22,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//auth
+app.use(session({
+    secret: "top secret!",
+    resave: true,
+    saveUninitialized:true
+}));
+
 ////////////////////////////////////////////////////////////
 // ROUTING
 ////////////////////////////////////////////////////////////
@@ -31,6 +38,8 @@ var lab10Router = require('./public/10Lab/router');
 
 //Final Router
 var finalRouter = require('./public/Final/router');
+//var finalAddTime = require('./public/Final/addTime');
+
 
 //auth tut
 // var authExerRouter = require('./public/Exercises/authentication/router');
@@ -48,6 +57,8 @@ app.use('/lab/10', lab10Router);
 /////////
 
 app.use('/final', finalRouter);
+//app.use('/addTime', finalRouter);
+
 
 //auth tut
 // //app.use('/', authExerRouter);

@@ -8,7 +8,8 @@
         <!--bootstrap-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+        <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         
     </head>
     <body>
@@ -16,7 +17,14 @@
         <!--20 points-->
         <!--Should show list of time slots-->
         <!--Date - Start Time - Duration - Booked By -- Details Button -- Delete Button-->
-        
+        <!--Nav Bar-->
+        <div class="navigationBar">
+            <a href="/final">Dashboard</a>
+            <a href="/addTime">Add Time Slot</a>
+            <a href="/rubric">Rubric</a>
+        </div>
+        <!--Table-->
+       
         <table class="centered">
             <tr id="table-header">
                 <td><strong>Date</strong></td>
@@ -40,21 +48,38 @@
         <div id="message"></div>
         
         <!--Add Button-->
-        
-<p><a id="add" class="btn btn-outline-success" href="/addTime"
-      onclick="centeredPopup(this.href,'myWindow','800','450','yes');return false">Add Time Slot!</a></p>
-        <!--Remove Button-->
-        <!--Logout Button (Maybe put at top right)--> 
+        <h1>Add New Time Slot</h1>
+            Date: <input type="date" id="date" name="date"><br> <br>
+            Start time: <input type="time" id="startTime" name="startTime"><br> <br>
+            End time: <input type="time" id="endTime" name="endTime"><br> <br>
+            <br><br>
+            <button id="addTimeSlotbtn" class="btn btn-lg btn-info">Add Time Slot!</button>
+            <br><br>
+            
+            
         <script>
             var popupWindow = null;
+            
             function centeredPopup(url, winName, w, h, scroll) {
                 LeftPosition = (screen.width) ? (screen.width - w) / 2 : 0;
                 TopPosition = (screen.height) ? (screen.height - h) / 2 : 0;
                 settings =
                     'height=' + h + ',width=' + w + ',top=' + TopPosition + ',left=' + LeftPosition + ',scrollbars=' + scroll + ',resizable'
                 popupWindow = window.open(url, winName, settings)
-    }
-        </script>
+            }
+            
+            //add TimeSlot
+            $("#addTimeSlotbtn").on("click", function () {
+                let date = $("#date").val();
+                let startTime = $("#startTime").val();
+                let endTime = $("#endTime").val();
+                
+                insertTimeSlot(date, startTime, endTime);
+           
+            });//addTimeSlot
+            
+            
+            </script>
         
     </body>
 </html>

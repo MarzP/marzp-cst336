@@ -5,30 +5,65 @@ const mysql = require('mysql');
 //Dashboard Page
 router.get("/", async function(req, res, next){
     let timeSlots = await getTimeSlots();
+    //let insertTS = await insertTimeSlot();
+    //res.render("../public/Final/views/index", {"timeSlots":timeSlots}, {"insertTS":insertTS});
     res.render("../public/Final/views/index", {"timeSlots":timeSlots});
     
 });//index
 
-//Login Page
-
 //Add Time Slot Page
+router.get("/addTime", async function(req, res, next) {
+    res.render("../public/Final/views/addTime");
+});//addTime
 
+//rubric
+router.get("/rubric", async function(req, res, next) {
+    res.render("../public/Final/rubric");
+});
+
+//login page
 //Remove Time Slot Page
 
 function getTimeSlots(query) {
     let conn = dbConnection();
+    
     return new Promise(function(resolve, reject) {
         conn.connect(function(err) {
             if(err) throw err;
+            
             console.log("in database");
             let sql=`SELECT dateOfSlot, startTime, endTime, bookedByFirstName, bookedByLastName FROM final_timeslots`;
             conn.query(sql, function(err,rows,fields) {
                 if(err) throw err;
+                conn.end();
                 resolve(rows);
             });
         });//conn
     });//promise
 }//getTimeSlots
+
+function insertTimeSlot(dateOfSlot, startTime, endTime) {
+    let conn = dbConnection();
+    
+    return new Promise(function(resolve, reject) {
+        conn.connect(async function(err) {
+            if(err) throw err;
+            
+            let sql = `INSERT INTO \`final_timeslots\`
+                      (dateOfSlot, startTime, endTime, firstName, lastName)
+                      VALUES (?,?,?,?,?)
+                      `;
+                      
+            let params = [dateOfSlot, startTime, endTime, "Not", "Booked"];
+            
+            conn.query(sql, params, function(err, rows, fields) {
+                if(err) throw err;
+                conn.end();
+                resolve(rows);
+            });
+        });//connect
+    });//promise
+}//insertTimeSlot
 
 function convertTime(time) {
         time = time.split(':'); // convert to array
@@ -56,12 +91,7 @@ function convertTime(time) {
         return timeValue;
     }//convertTime
 
-function convertDuration(start, end) {
-    start = start.split(':');
-    end = end.split(':');
-    
-    
-}
+
 
 
 
